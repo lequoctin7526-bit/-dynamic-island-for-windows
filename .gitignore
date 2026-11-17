@@ -1,10 +1,15 @@
 # Binaries / Temporary files
 build/
+bin/
+obj/
+publish/
 *.obj
 *.o
 *.tmp
 *.log
+*.user
+.vs/
 
-# Keep the compiled DLL and batch file for convenience
+# Keep windhawk mod dll and batch file if present
 !dynamic-island-for-windows.dll
 !build.bat
