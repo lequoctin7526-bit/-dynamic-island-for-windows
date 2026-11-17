@@ -19,28 +19,50 @@ namespace DynamicIslandApp.UI
 
         public MainWindow()
         {
-            InitializeComponent();
+            App.Log("MainWindow constructor start");
+            try
+            {
+                InitializeComponent();
+                App.Log("MainWindow InitializeComponent finished");
 
-            Loaded += OnWindowLoaded;
-            SystemEvents.DisplaySettingsChanged += OnDisplaySettingsChanged;
+                Loaded += OnWindowLoaded;
+                SystemEvents.DisplaySettingsChanged += OnDisplaySettingsChanged;
+            }
+            catch (Exception ex)
+            {
+                App.Log($"[MainWindow ctor error] {ex}");
+                throw;
+            }
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            ApplyWindowPosition();
-            ApplyLiquidGlassTheme();
+            App.Log("OnWindowLoaded start");
+            try
+            {
+                ApplyWindowPosition();
+                App.Log("ApplyWindowPosition done");
+                ApplyLiquidGlassTheme();
+                App.Log("ApplyLiquidGlassTheme done");
 
-            // Connect Services
-            MediaSessionService.Instance.MediaUpdated += OnMediaUpdated;
-            NotificationService.Instance.NotificationChanged += OnNotificationChanged;
-            SystemMonitorService.Instance.StatsUpdated += OnStatsUpdated;
-            SettingsManager.Instance.SettingsChanged += OnSettingsChanged;
+                // Connect Services
+                MediaSessionService.Instance.MediaUpdated += OnMediaUpdated;
+                NotificationService.Instance.NotificationChanged += OnNotificationChanged;
+                SystemMonitorService.Instance.StatsUpdated += OnStatsUpdated;
+                SettingsManager.Instance.SettingsChanged += OnSettingsChanged;
 
-            // Start system monitor
-            SystemMonitorService.Instance.Start();
+                // Start system monitor
+                SystemMonitorService.Instance.Start();
+                App.Log("SystemMonitorService started");
 
-            // Check initial media
-            _ = MediaSessionService.Instance.UpdateMediaInfoAsync();
+                // Check initial media
+                _ = MediaSessionService.Instance.UpdateMediaInfoAsync();
+                App.Log("Initial media checked");
+            }
+            catch (Exception ex)
+            {
+                App.Log($"[OnWindowLoaded error] {ex}");
+            }
         }
 
         private void OnDisplaySettingsChanged(object? sender, EventArgs e)

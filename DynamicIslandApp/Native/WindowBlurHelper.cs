@@ -12,10 +12,6 @@ namespace DynamicIslandApp.Native
             var hwnd = new WindowInteropHelper(window).Handle;
             if (hwnd == IntPtr.Zero) return;
 
-            // Make sure toolwindow style is applied (no taskbar button, doesn't steal focus)
-            int exStyle = PInvoke.GetWindowLong(hwnd, PInvoke.GWL_EXSTYLE);
-            PInvoke.SetWindowLong(hwnd, PInvoke.GWL_EXSTYLE, exStyle | PInvoke.WS_EX_TOOLWINDOW | PInvoke.WS_EX_NOACTIVATE);
-
             if (!enableAcrylic)
             {
                 DisableBlur(hwnd);
