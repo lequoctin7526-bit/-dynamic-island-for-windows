@@ -1,0 +1,10 @@
+# Binaries / Temporary files
+build/
+*.obj
+*.o
+*.tmp
+*.log
+
+# Keep the compiled DLL and batch file for convenience
+!dynamic-island-for-windows.dll
+!build.bat

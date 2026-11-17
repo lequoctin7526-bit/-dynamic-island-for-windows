@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Build Windhawk Mod (DLL)",
+      "command": "C:/Program Files/Windhawk/Compiler/bin/clang++.exe",
+      "args": [
+        "-shared",
+        "-o",
+        "${workspaceFolder}/dynamic-island-for-windows.dll",
+        "${file}",
+        "@C:/Program Files/Windhawk/Compiler/compile_flags.txt",
+        "-I",
+        "C:/Program Files/Windhawk/Compiler/include",
+        "-lole32",
+        "-loleaut32",
+        "-lshcore",
+        "-ld2d1",
+        "-ldwrite",
+        "-ldwmapi",
+        "-lgdi32",
+        "-luser32",
+        "-lshell32",
+        "-lruntimeobject",
+        "-lwindowscodecs",
+        "-lsetupapi",
+        "-lwinhttp",
+        "-lpdh",
+        "-lwinmm"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Compile Windhawk mod using bundled Clang compiler"
+    }
+  ]
+}
